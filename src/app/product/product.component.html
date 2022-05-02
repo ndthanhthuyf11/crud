@@ -1,0 +1,49 @@
+<div class="bg-black text-white fs-3 px-5 text-center">CRUD App Example</div>
+<div class="container justify-content-around mt-5 d-flex">
+    <form class="product-form" #productForm="ngForm" (ngSubmit)="submitData(productForm)">
+        <div class="text-center fs-4 fw-bold mb-3">
+            Update Product Info</div>
+            <div class="">
+                <input class="mb-3 form-control" type="hidden" name="_id" [(ngModel)]="product._id">
+            </div>
+            <div class="d-flex flex-column">
+                <label for="name">Name</label>
+                <input class="mb-3 form-control" type="text" name="" id="name" name="name" [(ngModel)]="product.name">
+            </div>
+            <div class="d-flex flex-column">
+                <label for="price">Price</label>
+                <input class="form-control" type="number" name="" id="price" name="price" [(ngModel)]="product['price']">
+            </div>
+            <div class="text-center btn-container my-3">
+                <button class="btn btn-primary mr-5" style="margin-right: 15px" type="submit">Submit</button>
+                <button class="btn btn-secondary" type="reset">Reset</button>
+            </div>
+        </form>
+        
+    <div class="product-list">
+        <div class="text-center fs-4 fw-bold mb-3">Product List</div>
+        <table class=""> 
+            <tr>
+                <th width="30px">#</th>
+                <th width="120px">Name</th>
+                <th width="80px">Price</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let p of products; let i = index">
+                <td class="fw-bold">{{i+1}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.price}}</td>
+                <td class="table-btn">
+                    <button class="btn" style="margin-right: 15px" (click)="edit(p)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"/></svg>
+                        Edit</button>
+                    <button class="btn" (click)="delete(p._id, productForm)" >
+                        <i class="bi bi-trash"></i>
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
